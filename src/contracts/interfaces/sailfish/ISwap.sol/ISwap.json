@@ -1,0 +1,121 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ISwap",
+  "sourceName": "contracts/interfaces/sailfish/ISwap.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "listedTokens",
+      "outputs": [
+        {
+          "internalType": "Token[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "lpTokens",
+      "outputs": [
+        {
+          "internalType": "Token[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "poolParams",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "swapType",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "Token",
+          "name": "lp",
+          "type": "bytes32"
+        }
+      ],
+      "name": "underlyingTokens",
+      "outputs": [
+        {
+          "internalType": "Token[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "Token[]",
+          "name": "tokens",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "int128[]",
+          "name": "amounts",
+          "type": "int128[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "velocore__execute",
+      "outputs": [
+        {
+          "internalType": "int128[]",
+          "name": "",
+          "type": "int128[]"
+        },
+        {
+          "internalType": "int128[]",
+          "name": "",
+          "type": "int128[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

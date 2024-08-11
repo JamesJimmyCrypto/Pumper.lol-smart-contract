@@ -1,0 +1,101 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IBribe",
+  "sourceName": "contracts/interfaces/sailfish/IBribe.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract IGauge",
+          "name": "gauge",
+          "type": "address"
+        }
+      ],
+      "name": "bribeRates",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IGauge",
+          "name": "gauge",
+          "type": "address"
+        }
+      ],
+      "name": "bribeTokens",
+      "outputs": [
+        {
+          "internalType": "Token[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "poolParams",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IGauge",
+          "name": "gauge",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "elapsed",
+          "type": "uint256"
+        }
+      ],
+      "name": "velocore__bribe",
+      "outputs": [
+        {
+          "internalType": "Token[]",
+          "name": "bribeTokens",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "int128[]",
+          "name": "deltaGauge",
+          "type": "int128[]"
+        },
+        {
+          "internalType": "int128[]",
+          "name": "deltaPool",
+          "type": "int128[]"
+        },
+        {
+          "internalType": "int128[]",
+          "name": "deltaExternal",
+          "type": "int128[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
