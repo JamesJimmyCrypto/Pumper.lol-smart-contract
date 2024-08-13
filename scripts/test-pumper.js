@@ -48,6 +48,21 @@ describe("Pumper.lol", function () {
             assert.equal(await pumperToken.name(), "TokenB");
             assert.equal(await pumperToken.symbol(), "TB");
         });
+
+        it("Should buy confirm x, y, k and x * k = k set by default", async function () {
+            const deployedPumpTokens = await this.pumperFactory.getDeployedPumpTokens(
+                this.deployerAddress
+            );
+            const pumperToken = await ethers.getContractAt("PumperToken", deployedPumpTokens[1]);
+
+            const x = await pumperToken.x();
+            const y = await pumperToken.y();
+            const k = await pumperToken.k();
+
+            console.log("x", ethers.parseEther(x));
+            console.log("y", ethers.parseEther(y));
+            console.log("k", ethers.parseEther(k));
+        });
     });
 });
 
