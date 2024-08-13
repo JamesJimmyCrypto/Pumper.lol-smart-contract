@@ -27,6 +27,8 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
         0x1C9f7def9b509D0d64a2adCe6f73F235147aB7f1;
     address sailFishVault = 0xB97582DCB6F2866098cA210095a04dF3e11B76A6;
 
+    string public constant TYPE = "PumperToken";
+
     constructor(
         string memory name,
         string memory symbol,

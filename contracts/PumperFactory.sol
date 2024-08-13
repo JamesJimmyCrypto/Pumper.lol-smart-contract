@@ -19,15 +19,56 @@ contract PumperFactory {
         _;
     }
 
-    function createPumpToken(string memory name, string memory symbol) public {
+    function createPumpToken(
+        string memory name,
+        string memory symbol
+    ) public returns (address) {
         address newPumpToken = address(
-            new PumperToken(name, symbol, address(this))
+            new PumperToken{
+                salt: bytes32(deployedPumpTokens[msg.sender].length)
+            }(name, symbol, address(this))
         );
         deployedPumpTokens[msg.sender].push(newPumpToken);
+
+        return address(newPumpToken);
     }
 
-    function getDeployedPumpTokens() public view returns (address[] memory) {
-        return deployedPumpTokens[msg.sender];
+    function getAddressBeforeDeployment(
+        bytes memory _bytecode,
+        uint256 _salt
+    ) public view returns (address) {
+        bytes32 hash = keccak256(
+            abi.encodePacked(
+                bytes1(0xff),
+                address(this),
+                _salt,
+                keccak256(_bytecode)
+            )
+        );
+
+        return address(uint160(uint(hash)));
+    }
+
+    function getBytecode(
+        string memory name,
+        string memory symbol
+    ) public view returns (bytes memory) {
+        bytes memory bytecode = type(PumperToken).creationCode;
+
+        return
+            abi.encodePacked(bytecode, abi.encode(name, symbol, address(this)));
+    }
+
+    function getDeployedPumpTokensLen(
+        address _creator
+    ) public view returns (uint256) {
+        return deployedPumpTokens[_creator].length;
+    }
+
+    function getDeployedPumpTokens(
+        address _creator
+    ) public view returns (address[] memory) {
+        return deployedPumpTokens[_creator];
     }
 
     function emitBuy(
