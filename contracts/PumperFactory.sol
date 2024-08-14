@@ -10,6 +10,7 @@ contract PumperFactory {
     event Buy(address indexed buyer, uint256 amount, uint256 price);
     event Sell(address indexed seller, uint256 amount, uint256 price);
     event LiquidtyDeployed(address indexed pool, uint256 x, uint256 y);
+    event NewPumpToken(address indexed creator, address indexed token);
 
     modifier onlyPumperToken() {
         require(
@@ -29,6 +30,8 @@ contract PumperFactory {
             }(name, symbol, address(this))
         );
         deployedPumpTokens[msg.sender].push(newPumpToken);
+
+        emit NewPumpToken(msg.sender, newPumpToken);
 
         return address(newPumpToken);
     }
@@ -75,7 +78,7 @@ contract PumperFactory {
         address buyer,
         uint256 amount,
         uint256 price
-    ) public onlyPumperToken {
+    ) external onlyPumperToken {
         emit Buy(buyer, amount, price);
     }
 
@@ -83,7 +86,7 @@ contract PumperFactory {
         address seller,
         uint256 amount,
         uint256 price
-    ) public onlyPumperToken {
+    ) external onlyPumperToken {
         emit Sell(seller, amount, price);
     }
 
@@ -91,7 +94,7 @@ contract PumperFactory {
         address pool,
         uint256 x,
         uint256 y
-    ) public onlyPumperToken {
+    ) external onlyPumperToken {
         emit LiquidtyDeployed(pool, x, y);
     }
 }
