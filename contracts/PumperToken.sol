@@ -15,7 +15,7 @@ import "hardhat/console.sol";
 contract PumperToken is ERC20, ERC20Burnable, Ownable {
     mapping(address => bool) public traders;
 
-    uint256 public liqCap = 10.05 ether; //When Liquidty crosses 11.1 EDU deploy on DEX
+    uint256 public liqCap = 10.05 ether; //When Liquidty crosses 10.05 EDU deploy on DEX
 
     uint256 public x;
     uint256 public y = 10 ether; //Starting EDU virtual Balance
@@ -104,6 +104,8 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
                 y
             )
         );
+
+        deployed = true;
     }
 
     function sellY(uint256 amount) public {
