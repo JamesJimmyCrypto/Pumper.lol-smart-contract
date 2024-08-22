@@ -33,6 +33,8 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
 
     bool public deployed = false;
 
+    uint256 public circulatingSupply = 0;
+
     constructor(
         string memory name,
         string memory symbol,
@@ -73,6 +75,8 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
         );
 
         _transfer(address(this), msg.sender, out);
+
+        circulatingSupply += out;
     }
 
     function _deployLiquidty() internal {
@@ -129,6 +133,8 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
         );
 
         payable(msg.sender).transfer(out);
+
+        circulatingSupply -= amount;
     }
 
     function getTokenOutputX(uint256 yAmount) public view returns (uint256) {

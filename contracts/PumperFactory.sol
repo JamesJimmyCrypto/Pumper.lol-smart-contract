@@ -7,9 +7,25 @@ import "./PumperToken.sol";
 contract PumperFactory {
     mapping(address => address[]) public deployedPumpTokens;
 
-    event Buy(address indexed buyer, uint256 amount, uint256 price);
-    event Sell(address indexed seller, uint256 amount, uint256 price);
-    event LiquidtyDeployed(address indexed pool, uint256 x, uint256 y);
+    event Buy(
+        address indexed token,
+        address indexed buyer,
+        uint256 amount,
+        uint256 price
+    );
+    event Sell(
+        address indexed token,
+        address indexed seller,
+        uint256 amount,
+        uint256 price
+    );
+
+    event LiquidtyDeployed(
+        address indexed token,
+        address indexed pool,
+        uint256 x,
+        uint256 y
+    );
     event NewPumpToken(address indexed creator, address indexed token);
 
     modifier onlyPumperToken() {
@@ -79,7 +95,7 @@ contract PumperFactory {
         uint256 amount,
         uint256 price
     ) external onlyPumperToken {
-        emit Buy(buyer, amount, price);
+        emit Buy(address(this), buyer, amount, price);
     }
 
     function emitSell(
@@ -87,7 +103,7 @@ contract PumperFactory {
         uint256 amount,
         uint256 price
     ) external onlyPumperToken {
-        emit Sell(seller, amount, price);
+        emit Sell(address(this), seller, amount, price);
     }
 
     function emitLiquidtyDeployed(
@@ -95,6 +111,6 @@ contract PumperFactory {
         uint256 x,
         uint256 y
     ) external onlyPumperToken {
-        emit LiquidtyDeployed(pool, x, y);
+        emit LiquidtyDeployed(address(this), pool, x, y);
     }
 }
