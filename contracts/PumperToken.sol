@@ -115,7 +115,7 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
         deployed = true;
     }
 
-    function sellY(uint256 amount) public {
+    function sellX(uint256 amount) public {
         require(amount > 0, "Invalid amount");
         require(deployed == false, "Liquidity already deployed");
 
@@ -126,7 +126,6 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
             y -= out;
         }
 
-        PumperFactory(pumperFactory).emitBuy(amount, out);
         // address(pumperFactory).call(
         //     abi.encodeWithSignature(
         //         "emitSell(address,uint256,uint256)",
@@ -136,9 +135,13 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
         //     )
         // );
 
+        IERC20(address(this)).transferFrom(msg.sender, address(this), amount);
+
         payable(msg.sender).transfer(out);
 
         circulatingSupply -= amount;
+
+        PumperFactory(pumperFactory).emitSell(amount, out);
     }
 
     function getTokenOutputX(uint256 yAmount) public view returns (uint256) {

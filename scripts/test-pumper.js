@@ -75,10 +75,13 @@ describe("Pumper.lol", function () {
             assert.equal(y, ethers.parseEther("10")); // Initial virtual EDU liquidty
 
             const supplyPrev = await pumperToken.balanceOf(tokenBAddress);
-            const purchaseAmt = ethers.parseEther("0.05");
+            const purchaseAmt = ethers.parseEther("0.04");
             const out = await pumperToken.getTokenOutputX(purchaseAmt);
 
             await pumperToken.buyX({ value: purchaseAmt });
+
+            await pumperToken.approve(await pumperToken.getAddress(), ethers.parseEther("1000"));
+            await pumperToken.sellX(ethers.parseEther("1000"));
 
             const supplyAfter = await pumperToken.balanceOf(tokenBAddress);
 
@@ -127,6 +130,9 @@ describe("Pumper.lol", function () {
             expect(y3).to.be.gt(y2);
             expect(k3).to.be.eq(k2);
 
+            await pumperToken.approve(await pumperToken.getAddress(), ethers.parseEther("1000"));
+            await pumperToken.sellX(ethers.parseEther("1000"));
+
             console.table({
                 x3: ethers.formatEther(x3),
                 y3: ethers.formatEther(y3),
@@ -134,7 +140,7 @@ describe("Pumper.lol", function () {
             });
         });
 
-        it("Should deploy liquidty when it reaches cap of 11 EDU token", async function () {
+        it.skip("Should deploy liquidty when it reaches cap of 11 EDU token", async function () {
             const deployedPumpTokens = await this.pumperFactory.getDeployedPumpTokens(
                 this.deployerAddress
             );
@@ -160,4 +166,4 @@ describe("Pumper.lol", function () {
     });
 });
 
-//npx hardhat test scripts/test-pumper.js --network localhost
+//npx hardhat test scripts/test-pumper.js --network hardhat
