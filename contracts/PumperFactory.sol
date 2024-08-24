@@ -91,14 +91,14 @@ contract PumperFactory {
     }
 
     function emitBuy(uint256 amount, uint256 price) external {
-        emit Buy(address(this), tx.origin, amount, price);
+        emit Buy(msg.sender, tx.origin, amount, price);
     }
 
     function emitSell(uint256 amount, uint256 price) external {
-        emit Sell(address(this), tx.origin, amount, price);
+        emit Sell(msg.sender, tx.origin, amount, price);
     }
 
     function emitLiquidtyDeployed(address pool, uint256 x, uint256 y) external {
-        emit LiquidtyDeployed(address(this), pool, x, y);
+        emit LiquidtyDeployed(msg.sender, pool, x, y);
     }
 }
