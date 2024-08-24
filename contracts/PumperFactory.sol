@@ -90,27 +90,15 @@ contract PumperFactory {
         return deployedPumpTokens[_creator];
     }
 
-    function emitBuy(
-        address buyer,
-        uint256 amount,
-        uint256 price
-    ) external onlyPumperToken {
-        emit Buy(address(this), buyer, amount, price);
+    function emitBuy(uint256 amount, uint256 price) external {
+        emit Buy(address(this), tx.origin, amount, price);
     }
 
-    function emitSell(
-        address seller,
-        uint256 amount,
-        uint256 price
-    ) external onlyPumperToken {
-        emit Sell(address(this), seller, amount, price);
+    function emitSell(uint256 amount, uint256 price) external {
+        emit Sell(address(this), tx.origin, amount, price);
     }
 
-    function emitLiquidtyDeployed(
-        address pool,
-        uint256 x,
-        uint256 y
-    ) external onlyPumperToken {
+    function emitLiquidtyDeployed(address pool, uint256 x, uint256 y) external {
         emit LiquidtyDeployed(address(this), pool, x, y);
     }
 }

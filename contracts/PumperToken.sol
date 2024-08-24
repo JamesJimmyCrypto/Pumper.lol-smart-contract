@@ -65,14 +65,15 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
             _deployLiquidty();
         }
 
-        address(pumperFactory).call(
-            abi.encodeWithSignature(
-                "emitBuy(address,uint256,uint256)",
-                msg.sender,
-                out,
-                msg.value
-            )
-        );
+        PumperFactory(pumperFactory).emitBuy(out, msg.value);
+        // address(pumperFactory).call(
+        //     abi.encodeWithSignature(
+        //         "emitBuy(address,uint256,uint256)",
+        //         msg.sender,
+        //         out,
+        //         msg.value
+        //     )
+        // );
 
         _transfer(address(this), msg.sender, out);
 
@@ -100,14 +101,16 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
             type(uint256).max
         );
 
-        address(pumperFactory).call(
-            abi.encodeWithSignature(
-                "emitLiquidtyDeployed(address,uint256,uint256)",
-                pair,
-                x,
-                y
-            )
-        );
+        PumperFactory(pumperFactory).emitLiquidtyDeployed(pair, x, y);
+
+        // address(pumperFactory).call(
+        //     abi.encodeWithSignature(
+        //         "emitLiquidtyDeployed(address,uint256,uint256)",
+        //         pair,
+        //         x,
+        //         y
+        //     )
+        // );
 
         deployed = true;
     }
@@ -123,14 +126,15 @@ contract PumperToken is ERC20, ERC20Burnable, Ownable {
             y -= out;
         }
 
-        address(pumperFactory).call(
-            abi.encodeWithSignature(
-                "emitSell(address,uint256,uint256)",
-                msg.sender,
-                amount,
-                out
-            )
-        );
+        PumperFactory(pumperFactory).emitBuy(amount, out);
+        // address(pumperFactory).call(
+        //     abi.encodeWithSignature(
+        //         "emitSell(address,uint256,uint256)",
+        //         msg.sender,
+        //         amount,
+        //         out
+        //     )
+        // );
 
         payable(msg.sender).transfer(out);
 

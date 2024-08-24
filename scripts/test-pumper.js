@@ -99,7 +99,7 @@ describe("Pumper.lol", function () {
             });
         });
 
-        it.skip("Should sell half of my token for half of EDU I purchase with as the first and only buyer", async function () {
+        it("Should sell half of my token for half of EDU I purchase with as the first and only buyer", async function () {
             const deployedPumpTokens = await this.pumperFactory.getDeployedPumpTokens(
                 this.deployerAddress
             );
@@ -134,7 +134,7 @@ describe("Pumper.lol", function () {
             });
         });
 
-        it.skip("Should deploy liquidty when it reaches cap of 11 EDU token", async function () {
+        it("Should deploy liquidty when it reaches cap of 11 EDU token", async function () {
             const deployedPumpTokens = await this.pumperFactory.getDeployedPumpTokens(
                 this.deployerAddress
             );
